@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Etsy POD 联盟计划 - 推广优质工具和平台，赚取丰厚佣金">
+    <title>Etsy POD 联盟计划 - 轻松赚取被动收入 | 立即加入</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #F45866;
+            --secondary-color: #4A5568;
+            --accent-color: #F7FAFC;
+            --text-dark: #1A202C;
+            --text-light: #718096;
+            --gradient-start: #667eea;
+            --gradient-end: #764ba2;
+            --success-color: #48BB78;
+            --warning-color: #ED8936;
+            --info-color: #4299E1;
+            --white: #FFFFFF;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+            --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .join-button {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: var(--white);
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 0.95rem;
+        }
+
+        .join-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Promo Banner */
+        .promo-banner {
+            margin-top: 70px;
+            background: linear-gradient(135deg, var(--success-color), #38a169);
+            color: var(--white);
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 2rem 6rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero p {
+            font-size: 1.35rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.3s both;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .btn-primary {
+            background: var(--white);
+            color: var(--gradient-start);
+            padding: 1.25rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: inline-block;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            padding: 1.25rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, background 0.3s ease;
+            display: inline-block;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        /* Programs Section */
+        .programs {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .section-header p {
+            font-size: 1.125rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .program-card {
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #E2E8F0;
+            position: relative;
+        }
+
+        .program-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .program-header {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .program-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .program-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .program-category {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .program-body {
+            padding: 2rem;
+        }
+
+        .program-description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .commission-info {
+            background: var(--accent-color);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .commission-rate {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--success-color);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .commission-label {
+            color: var(--text-dark);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .commission-details {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .program-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .program-features li {
+            padding: 0.5rem 0;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .program-features li::before {
+            content: "✓";
+            color: var(--success-color);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .affiliate-button {
+            width: 100%;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: var(--white);
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .affiliate-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Benefits Section */
+        .benefits {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #F7FAFC 0%, #EDF2F7 100%);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .benefit-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Earnings Section */
+        .earnings {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .earnings-showcase {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 20px;
+            padding: 4rem 2rem;
+            color: var(--white);
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .earnings-amount {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .earnings-label {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .testimonials {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: var(--accent-color);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .testimonial-text {
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .testimonial-author-info h4 {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .testimonial-author-info p {
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 3rem 2rem 1.5rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.125rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .programs-grid,
+            .testimonials,
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+
+            .hero-stats {
+                gap: 2rem;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Etsy 联盟</div>
+            <ul class="nav-links">
+                <li><a href="#programs">联盟项目</a></li>
+                <li><a href="#benefits">收益优势</a></li>
+                <li><a href="#earnings">成功案例</a></li>
+            </ul>
+            <a href="#cta" class="join-button">立即加入</a>
+        </div>
+    </nav>
+
+    <!-- Promo Banner -->
+    <div class="promo-banner">
+        💰 新会员限时奖励：前 10 个成功推荐额外获得 $50 奖励金！
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>推广优质工具，轻松赚取被动收入</h1>
+            <p>加入我们的联盟计划，推广 Etsy POD 工具和平台<br>每笔推荐都能获得丰厚佣金，构建你的被动收入流</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-value">15-30%</span>
+                    <span class="stat-label">佣金比例</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">$500+</span>
+                    <span class="stat-label">平均月收入</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">24/7</span>
+                    <span class="stat-label">自动结算</span>
+                </div>
+            </div>
+            <div class="hero-buttons">
+                <a href="#cta" class="btn-primary">立即加入联盟 →</a>
+                <a href="#programs" class="btn-secondary">查看联盟项目</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="programs" id="programs">
+        <div class="container">
+            <div class="section-header">
+                <h2>热门联盟项目</h2>
+                <p>推广这些优质工具和平台，获得持续稳定的佣金收入</p>
+            </div>
+            <div class="programs-grid">
+                <!-- Program 1 -->
+                <div class="program-card">
+                    <div class="program-header">
+                        <div class="program-icon">🖨️</div>
+                        <div class="program-name">Printify</div>
+                        <div class="program-category">POD 平台</div>
+                    </div>
+                    <div class="program-body">
+                        <p class="program-description">全球领先的按需打印平台，与 Etsy 完美集成。推荐用户注册可获得持续佣金。</p>
+                        <div class="commission-info">
+                            <span class="commission-rate">30%</span>
+                            <div class="commission-label">首月佣金比例</div>
+                            <div class="commission-details">后续每月 15% 持续佣金</div>
+                        </div>
+                        <ul class="program-features">
+                            <li>每注册用户 $5 奖励</li>
+                            <li>首次订单佣金 30%</li>
+                            <li>持续月度佣金 15%</li>
+                            <li>实时数据追踪</li>
+                            <li>30 天 Cookie 有效期</li>
+                        </ul>
+                        <button class="affiliate-button" onclick="joinAffiliate('Printify')">申请推广链接</button>
+                    </div>
+                </div>
+
+                <!-- Program 2 -->
+                <div class="program-card">
+                    <div class="program-header">
+                        <div class="program-icon">🎨</div>
+                        <div class="program-name">Printful</div>
+                        <div class="program-category">POD 平台</div>
+                    </div>
+                    <div class="program-body">
+                        <p class="program-description">高质量打印服务商，提供优质产品和快速配送。推荐优质客户获得更高佣金。</p>
+                        <div class="commission-info">
+                            <span class="commission-rate">25%</span>
+                            <div class="commission-label">首月佣金比例</div>
+                            <div class="commission-details">后续每月 12% 持续佣金</div>
+                        </div>
+                        <ul class="program-features">
+                            <li>每注册用户 $3 奖励</li>
+                            <li>首次订单佣金 25%</li>
+                            <li>持续月度佣金 12%</li>
+                            <li>高级数据报表</li>
+                            <li>60 天 Cookie 有效期</li>
+                        </ul>
+                        <button class="affiliate-button" onclick="joinAffiliate('Printful')">申请推广链接</button>
+                    </div>
+                </div>
+
+                <!-- Program 3 -->
+                <div class="program-card">
+                    <div class="program-header">
+                        <div class="program-icon">✏️</div>
+                        <div class="program-name">Canva Pro</div>
+                        <div class="program-category">设计工具</div>
+                    </div>
+                    <div class="program-body">
+                        <p class="program-description">专业设计工具，Etsy 卖家必备。推荐用户订阅可获得高额一次性佣金。</p>
+                        <div class="commission-info">
+                            <span class="commission-rate">$50</span>
+                            <div class="commission-label">每成功推荐</div>
+                            <div class="commission-details">用户首次订阅即可获得</div>
+                        </div>
+                        <ul class="program-features">
+                            <li>每成功订阅 $50 佣金</li>
+                            <li>90 天 Cookie 有效期</li>
+                            <li>高转化率产品</li>
+                            <li>实时佣金结算</li>
+                            <li>推广素材齐全</li>
+                        </ul>
+                        <button class="affiliate-button" onclick="joinAffiliate('Canva')">申请推广链接</button>
+                    </div>
+                </div>
+
+                <!-- Program 4 -->
+                <div class="program-card">
+                    <div class="program-header">
+                        <div class="program-icon">📊</div>
+                        <div class="program-name">Etsy 店铺优化工具</div>
+                        <div class="program-category">SaaS 工具</div>
+                    </div>
+                    <div class="program-body">
+                        <p class="program-description">专业的 Etsy SEO 和数据分析工具，帮助卖家提升销量。月度订阅，持续佣金。</p>
+                        <div class="commission-info">
+                            <span class="commission-rate">20%</span>
+                            <div class="commission-label">月度佣金</div>
+                            <div class="commission-details">用户订阅期间持续获得</div>
+                        </div>
+                        <ul class="program-features">
+                            <li>月度订阅 20% 佣金</li>
+                            <li>每笔订单持续分成</li>
+                            <li>高留存率产品</li>
+                            <li>专业推广支持</li>
+                            <li>45 天 Cookie 有效期</li>
+                        </ul>
+                        <button class="affiliate-button" onclick="joinAffiliate('Etsy Tool')">申请推广链接</button>
+                    </div>
+                </div>
+
+                <!-- Program 5 -->
+                <div class="program-card">
+                    <div class="program-header">
+                        <div class="program-icon">🎓</div>
+                        <div class="program-name">Etsy POD 课程</div>
+                        <div class="program-category">在线课程</div>
+                    </div>
+                    <div class="program-body">
+                        <p class="program-description">完整的 Etsy POD 开店课程，从零到一。高价值产品，高额佣金。</p>
+                        <div class="commission-info">
+                            <span class="commission-rate">40%</span>
+                            <div class="commission-label">课程佣金</div>
+                            <div class="commission-details">每售出一套课程</div>
+                        </div>
+                        <ul class="program-features">
+                            <li>每销售 $200+ 佣金</li>
+                            <li>高价值产品</li>
+                            <li>终身 Cookie 跟踪</li>
+                            <li>完整课程资料包</li>
+                            <li>一对一推广支持</li>
+                        </ul>
+                        <button class="affiliate-button" onclick="joinAffiliate('Course')">申请推广链接</button>
+                    </div>
+                </div>
+
+                <!-- Program 6 -->
+                <div class="program-card">
+                    <div class="program-header">
+                        <div class="program-icon">🔧</div>
+                        <div class="program-name">店铺管理工具集</div>
+                        <div class="program-category">工具套件</div>
+                    </div>
+                    <div class="program-body">
+                        <p class="program-description">一站式 Etsy 店铺管理解决方案，包含多个工具。套装销售，高额回报。</p>
+                        <div class="commission-info">
+                            <span class="commission-rate">35%</span>
+                            <div class="commission-label">套装佣金</div>
+                            <div class="commission-details">一次性高额佣金</div>
+                        </div>
+                        <ul class="program-features">
+                            <li>套装销售 35% 佣金</li>
+                            <li>单工具 25% 佣金</li>
+                            <li>推广素材库</li>
+                            <li>营销培训支持</li>
+                            <li>30 天 Cookie 有效期</li>
+                        </ul>
+                        <button class="affiliate-button" onclick="joinAffiliate('Tool Set')">申请推广链接</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
+        <div class="container">
+            <div class="section-header">
+                <h2>为什么选择我们的联盟计划？</h2>
+                <p>加入我们，享受最优质的联盟营销体验</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">💰</div>
+                    <h3>高额佣金</h3>
+                    <p>15-40% 的佣金比例，行业领先水平。每笔推荐都能获得可观收益。</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <h3>快速结算</h3>
+                    <p>每月自动结算，无需等待。PayPal 和银行转账多种方式，便捷快速。</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📈</div>
+                    <h3>实时数据</h3>
+                    <p>详细的统计仪表板，实时追踪点击、转化和收益。数据透明，一目了然。</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎁</div>
+                    <h3>推广素材</h3>
+                    <p>提供专业的推广素材包，包括横幅、文案、邮件模板等，开箱即用。</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🤝</div>
+                    <h3>专业支持</h3>
+                    <p>专属联盟经理支持，提供营销建议和优化方案，助你提升转化率。</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔗</div>
+                    <h3>长期合作</h3>
+                    <p>持续佣金模式，用户持续使用你就能持续获得收益，构建被动收入。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Earnings Section -->
+    <section class="earnings" id="earnings">
+        <div class="container">
+            <div class="section-header">
+                <h2>联盟会员收入展示</h2>
+                <p>看看其他联盟会员是如何通过推广赚取收入的</p>
+            </div>
+            <div class="earnings-showcase">
+                <div class="earnings-amount">$12,458</div>
+                <div class="earnings-label">本月总收益（所有联盟会员）</div>
+                <p style="opacity: 0.9; margin-top: 1rem;">已有超过 500+ 活跃联盟会员，平均月收入 $500+</p>
+            </div>
+            <div class="testimonials">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"加入联盟 3 个月，已经赚了 $2,400！推广 Printify 真的很容易，因为有现成的推广素材。推荐给所有 Etsy 卖家！"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">L</div>
+                        <div class="testimonial-author-info">
+                            <h4>Lisa Chen</h4>
+                            <p>联盟会员 · 3 个月 · $2,400 收益</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"被动收入真的很香！我推广了 Canva Pro，一次推广可以持续带来收益。现在每月稳定收入 $800+，完全是被动收入。"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">M</div>
+                        <div class="testimonial-author-info">
+                            <h4>Mike Zhang</h4>
+                            <p>联盟会员 · 6 个月 · $4,800 累计</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"最棒的是持续的月度佣金。我推广的 POD 平台每个月都带来稳定的收入，已经是我主要收入来源之一了。"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">S</div>
+                        <div class="testimonial-author-info">
+                            <h4>Sarah Wang</h4>
+                            <p>联盟会员 · 1 年 · $8,500 累计</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="cta">
+        <div class="cta-content">
+            <h2>准备好开始赚取被动收入了吗？</h2>
+            <p>立即加入我们的联盟计划，推广优质工具和平台<br>无需投资，只需推广，轻松赚取丰厚佣金</p>
+            <div class="hero-buttons">
+                <a href="#programs" class="btn-primary">立即申请加入 →</a>
+                <a href="#benefits" class="btn-secondary">了解更多优势</a>
+            </div>
+            <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">🎁 新会员福利：前 10 个成功推荐额外获得 $50 奖励金</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#programs">联盟项目</a>
+                <a href="#benefits">收益优势</a>
+                <a href="#earnings">成功案例</a>
+                <a href="index.html">查看产品</a>
+                <a href="guide.html">店铺指南</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Etsy 联盟计划. 所有权利保留.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.85rem;">* 收益数据仅供参考，实际收益因推广方式和效果而异</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        let lastScroll = 0;
+        const nav = document.querySelector('nav');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            if (currentScroll > 100) {
+                nav.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+            } else {
+                nav.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
+            }
+            lastScroll = currentScroll;
+        });
+
+        // Join affiliate function
+        function joinAffiliate(programName) {
+            // 这里可以链接到实际的联盟注册页面
+            alert(`申请推广 ${programName} 的联盟链接\n\n提示：请将这里链接到你的实际联盟注册页面或联系邮箱\n\n可以发送邮件到：affiliate@example.com\n主题：申请 ${programName} 联盟链接`);
+            
+            // 或者直接跳转
+            // window.location.href = '你的联盟注册链接';
+            
+            // 或者打开邮件客户端
+            // window.location.href = 'mailto:affiliate@example.com?subject=申请' + programName + '联盟链接';
+        }
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.program-card, .benefit-card, .testimonial-card').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
