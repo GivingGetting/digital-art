@@ -609,14 +609,55 @@
     </footer>
 
     <script>
-        document.getElementById('diagnosisForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            performDiagnosis();
+        // 等待 DOM 加载完成
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('diagnosisForm');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    try {
+                        performDiagnosis();
+                    } catch (error) {
+                        console.error('诊断过程中发生错误:', error);
+                        alert('诊断过程中发生错误，请检查控制台查看详细信息。');
+                    }
+                });
+            } else {
+                console.error('找不到表单元素 #diagnosisForm');
+            }
         });
 
         function performDiagnosis() {
-            // 获取表单数据
-            const shopName = document.getElementById('shopName').value || 'GuNiaor';
+            try {
+                // 获取表单数据
+                const shopLinkElement = document.getElementById('shopLink');
+                if (!shopLinkElement) {
+                    console.error('找不到店铺链接输入框');
+                    alert('找不到店铺链接输入框，请刷新页面重试。');
+                    return;
+                }
+                const shopLinkInput = shopLinkElement.value.trim();
+            let shopName = '';
+            let shopUrl = '';
+            
+            // 解析店铺链接或名称
+            if (shopLinkInput) {
+                if (shopLinkInput.includes('etsy.com/shop/')) {
+                    // 提取店铺名称
+                    const match = shopLinkInput.match(/shop\/([^/?]+)/);
+                    shopName = match ? match[1] : shopLinkInput;
+                    shopUrl = shopLinkInput.startsWith('http') ? shopLinkInput : 'https://' + shopLinkInput;
+                } else if (shopLinkInput.startsWith('http')) {
+                    shopUrl = shopLinkInput;
+                    shopName = shopLinkInput.split('/').pop() || '店铺';
+                } else {
+                    shopName = shopLinkInput;
+                    shopUrl = `https://www.etsy.com/shop/${shopLinkInput}`;
+                }
+            } else {
+                shopName = '你的店铺';
+            }
+            
             const shopType = document.getElementById('shopType').value;
             const listingCount = parseInt(document.getElementById('listingCount').value) || 0;
             const hasPolicies = document.getElementById('hasPolicies').value;
@@ -692,8 +733,18 @@
             }
 
             // 显示结果区域
-            document.getElementById('results').classList.add('show');
-            document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            const resultsElement = document.getElementById('results');
+            if (resultsElement) {
+                resultsElement.classList.add('show');
+                resultsElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                console.error('找不到结果区域元素');
+                alert('找不到结果区域，请刷新页面重试。');
+            }
+            } catch (error) {
+                console.error('执行诊断时发生错误:', error);
+                alert('诊断过程中发生错误：' + error.message);
+            }
         }
 
         function displaySetupChecks(shopType, hasPolicies, hasProductionPartner, score) {
