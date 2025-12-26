@@ -78,7 +78,7 @@ Los Angeles, CA, United States
 **选项 2 - 根据你的主要供应商选择**：
 - 如果你主要使用美国的供应商：`Charlotte, NC, United States`
 - 如果你主要使用欧洲的供应商：`Berlin, Germany` 或 `London, United Kingdom`
-- 如果你主要使用中国的供应商：`Shenzhen, China`
+- 如果你主要使用其他地区的供应商：根据实际供应商所在地填写（如 `Toronto, Canada`、`Sydney, Australia` 等）
 
 **选项 3 - 如果你不确定，使用最常见的**：
 ```
@@ -132,14 +132,14 @@ Charlotte, NC, United States
 | **Descriptive title** | `Print on Demand Service Provider` |
 | **Location** | `Berlin, Germany` |
 
-### 示例 3：中国配送中心
+### 示例 3：其他地区配送中心
 
 | 字段 | 填写内容 |
 |------|---------|
 | **Production partner** | `Printify` |
 | **Show this to buyers** | ❌ 关闭（Private） |
 | **Descriptive title** | `Professional POD Printing Service` |
-| **Location** | `Shenzhen, China` |
+| **Location** | `Toronto, Canada`（根据实际供应商地点填写） |
 
 ---
 

@@ -106,7 +106,7 @@
 - **Location**：根据你主要使用的 Printify 供应商选择：
   - 美国供应商：`Charlotte, NC, United States` 或 `Los Angeles, CA, United States`
   - 欧洲供应商：`Berlin, Germany` 或 `London, United Kingdom`
-  - 中国供应商：`Shenzhen, China`
+  - 其他地区：根据实际供应商所在地填写（如 `Toronto, Canada`、`Sydney, Australia` 等）
 
 ### 步骤 3.3：保存设置
 

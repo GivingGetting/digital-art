@@ -80,7 +80,7 @@ Shop Manager > Listings > [选择/创建 Listing] > 滚动到 "Production partne
 
 **操作**：
 1. 点击下拉菜单或按钮
-2. 从列表中选择已添加的合作伙伴（如 Printify、Printful、XINH Store 等）
+2. 从列表中选择已添加的合作伙伴（如 Printify、Printful 等）
 3. 如果列表中没有，点击 **"Add new production partner"**
 
 #### 步骤 3：如果添加新合作伙伴
@@ -124,8 +124,8 @@ Shop Manager > Listings > [选择/创建 Listing] > 滚动到 "Production partne
 
 **示例**：
 - 使用 Printify 的 T恤 → 选择 "Printify"
-- 使用 XINH Store 的海报 → 选择 "XINH Store"
-- 使用 Printful 的马克杯 → 选择 "Printful"
+- 使用 Printful 的海报 → 选择 "Printful"
+- 使用其他 POD 供应商的产品 → 选择对应的供应商名称
 
 ---
 
@@ -311,7 +311,7 @@ Production partners 部分通常显示：
 
 **POD 产品**：
 - 选择：This item was made by a production partner
-- 从列表中选择：Printify / Printful / XINH Store 等
+- 从列表中选择：Printify / Printful 或其他已添加的 POD 供应商
 
 **数字下载商品**：
 - 选择：This item was made by me or my shop team
