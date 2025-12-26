@@ -622,12 +622,100 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="hasProductionPartner">是否添加了生产合作伙伴？</label>
+                    <label for="hasProductionPartner">
+                        是否添加了生产合作伙伴？
+                        <button type="button" class="help-btn" onclick="toggleProductionPartnerHelp()" title="如何判断是否添加了生产合作伙伴">
+                            ❓
+                        </button>
+                    </label>
                     <select id="hasProductionPartner">
                         <option value="yes">✅ 已添加（适用于 POD）</option>
                         <option value="no">❌ 未添加</option>
                         <option value="na">不适用（非 POD 产品）</option>
                     </select>
+                    <div class="form-hint">
+                        不确定如何判断？点击 ❓ 查看详细检查指南
+                    </div>
+                    <div id="productionPartnerHelp" class="help-box" style="display: none;">
+                        <h4>🏭 如何判断是否添加了生产合作伙伴？</h4>
+                        
+                        <p><strong>📋 什么是生产合作伙伴？</strong></p>
+                        <p>生产合作伙伴是帮助你制造产品的第三方公司或个人，例如：</p>
+                        <ul>
+                            <li>POD（按需打印）服务商：Printful、Printify 等</li>
+                            <li>第三方制造商或供应商</li>
+                            <li>代工服务</li>
+                        </ul>
+
+                        <p><strong>🔍 检查步骤（方法 1：店铺设置页面）：</strong></p>
+                        <ol>
+                            <li>登录 Etsy 卖家账户</li>
+                            <li>进入 "Shop Manager"（店铺管理） > "Settings"（设置） > "Partners you work with"（生产合作伙伴）</li>
+                            <li>或直接访问：<a href="https://www.etsy.com/your/shops/me/partners" target="_blank" rel="noopener noreferrer">etsy.com/your/shops/me/partners</a></li>
+                            <li>查看是否有已添加的合作伙伴列表</li>
+                        </ol>
+
+                        <p><strong>🔍 检查步骤（方法 2：在 Listing 中检查）：</strong></p>
+                        <ol>
+                            <li>进入 "Shop Manager" > "Listings"</li>
+                            <li>打开任意一个 POD 产品的编辑页面</li>
+                            <li>滚动找到 "Production partners" 部分</li>
+                            <li>查看是否选择了 "This item was made by a production partner"</li>
+                            <li>如果已选择，会显示合作伙伴名称</li>
+                        </ol>
+
+                        <p><strong>✅ 如何选择：</strong></p>
+                        <ul>
+                            <li>
+                                <strong>✅ 已添加（适用于 POD）</strong>：
+                                <br>• 如果你使用 POD 服务（Printful、Printify 等）
+                                <br>• 并且已经在 Etsy 设置中添加了合作伙伴
+                                <br>• 或者在 listing 中选择了生产合作伙伴
+                                <br>• <span style="color: #e74c3c;">⚠️ POD 产品必须添加生产合作伙伴，否则违反 Etsy 政策！</span>
+                            </li>
+                            <li>
+                                <strong>❌ 未添加</strong>：
+                                <br>• 如果你的店铺类型是 POD，但还没有添加生产合作伙伴
+                                <br>• 需要立即添加，这是 Etsy 的强制要求
+                            </li>
+                            <li>
+                                <strong>不适用（非 POD 产品）</strong>：
+                                <br>• 数字下载商品（你自己制作的文件，不需要第三方制造）
+                                <br>• 手工制作产品（你自己制作）
+                                <br>• 古董/收藏品（不需要制造）
+                            </li>
+                        </ul>
+
+                        <p><strong>⚠️ 重要提示：</strong></p>
+                        <ul>
+                            <li>✅ <strong>POD 产品必须声明生产合作伙伴</strong>，这是 Etsy 的强制要求</li>
+                            <li>❌ <strong>不能声称 POD 产品是自己制作的</strong>，违反政策可能导致账户被封</li>
+                            <li>✅ <strong>数字下载商品不需要</strong>生产合作伙伴（因为文件是你自己制作的）</li>
+                        </ul>
+
+                        <p><strong>📝 如何添加生产合作伙伴：</strong></p>
+                        <ol>
+                            <li>访问：<a href="https://www.etsy.com/your/shops/me/partners" target="_blank" rel="noopener noreferrer">etsy.com/your/shops/me/partners</a></li>
+                            <li>点击 "+ Add production partner" 按钮</li>
+                            <li>填写信息：
+                                <ul>
+                                    <li><strong>公司名称</strong>：如 "Printify"、"Printful"</li>
+                                    <li><strong>地点</strong>：城市和国家（如 "Charlotte, NC, United States"）</li>
+                                    <li><strong>描述</strong>（可选）：简要说明</li>
+                                </ul>
+                            </li>
+                            <li>保存后，在创建 listing 时可以选择该合作伙伴</li>
+                        </ol>
+
+                        <p><strong>💡 相关文档：</strong></p>
+                        <ul>
+                            <li>📘 <a href="Etsy生产合作伙伴设置指南.md" target="_blank">Etsy生产合作伙伴设置指南.md</a> - 完整设置指南</li>
+                            <li>📋 <a href="在Listing中设置生产合作伙伴.md" target="_blank">在Listing中设置生产合作伙伴.md</a> - Listing 中的设置方法</li>
+                            <li>🔗 <a href="添加Printify合作伙伴指南.md" target="_blank">添加Printify合作伙伴指南.md</a> - Printify 特定指南</li>
+                        </ul>
+
+                        <button type="button" class="close-help-btn" onclick="toggleProductionPartnerHelp()">关闭</button>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -910,6 +998,19 @@
         // 切换政策帮助信息显示
         function togglePolicyHelp() {
             const helpBox = document.getElementById('policyHelp');
+            if (helpBox) {
+                if (helpBox.style.display === 'none' || helpBox.style.display === '') {
+                    helpBox.style.display = 'block';
+                    helpBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } else {
+                    helpBox.style.display = 'none';
+                }
+            }
+        }
+
+        // 切换生产合作伙伴帮助信息显示
+        function toggleProductionPartnerHelp() {
+            const helpBox = document.getElementById('productionPartnerHelp');
             if (helpBox) {
                 if (helpBox.style.display === 'none' || helpBox.style.display === '') {
                     helpBox.style.display = 'block';
