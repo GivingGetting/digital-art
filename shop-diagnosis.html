@@ -923,13 +923,253 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="imagesQuality">产品图片质量</label>
+                    <label for="imagesQuality">
+                        产品图片质量
+                        <button type="button" class="help-btn" onclick="toggleImagesQualityHelp()" title="如何判断产品图片质量">
+                            ❓
+                        </button>
+                    </label>
                     <select id="imagesQuality">
                         <option value="excellent">优秀 - 高质量，多角度，生活场景</option>
                         <option value="good">良好 - 质量不错，有多个角度</option>
                         <option value="basic">基础 - 基本产品图</option>
                         <option value="poor">较差 - 图片质量需要改进</option>
                     </select>
+                    <div class="form-hint">
+                        不确定如何判断？点击 ❓ 查看详细评估指南
+                    </div>
+                    <div id="imagesQualityHelp" class="help-box" style="display: none;">
+                        <h4>📸 如何判断产品图片质量？</h4>
+                        
+                        <p><strong>📋 Etsy 图片质量要求：</strong></p>
+                        <ul>
+                            <li><strong>主图尺寸</strong>：至少 2000x2000 像素（推荐 2400x2400 或更高）</li>
+                            <li><strong>图片数量</strong>：至少 5 张，推荐 8-10 张</li>
+                            <li><strong>文件格式</strong>：JPG、PNG、GIF</li>
+                            <li><strong>文件大小</strong>：每张不超过 20MB</li>
+                            <li><strong>图片质量</strong>：清晰、高分辨率、色彩准确</li>
+                        </ul>
+
+                        <p><strong>🔍 检查步骤：</strong></p>
+                        <ol>
+                            <li>登录 Etsy 卖家账户</li>
+                            <li>进入 "Shop Manager" > "Listings"</li>
+                            <li>打开几个代表性产品的 listing 页面</li>
+                            <li>查看产品图片，按照下面的清单逐一评估</li>
+                        </ol>
+
+                        <p><strong>✅ 图片类型检查清单：</strong></p>
+
+                        <p><strong>1. 主图（第一张图片）- 最重要！</strong></p>
+                        <ul>
+                            <li>
+                                <strong>✅ 优秀标准：</strong>
+                                <ul>
+                                    <li>高质量、高分辨率（至少 2000x2000 像素）</li>
+                                    <li>清晰、锐利，没有模糊或像素化</li>
+                                    <li>产品占据图片的主要位置（至少 80%）</li>
+                                    <li>白色或干净简洁的背景</li>
+                                    <li>光线充足，色彩准确</li>
+                                    <li>展示产品的最佳角度</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>⚠️ 良好标准：</strong>
+                                <ul>
+                                    <li>质量不错，但可能分辨率略低（1500-2000 像素）</li>
+                                    <li>基本清晰，但可能不够锐利</li>
+                                    <li>背景可能不够干净</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>❌ 基础/较差：</strong>
+                                <ul>
+                                    <li>分辨率过低（小于 1500 像素）</li>
+                                    <li>模糊、像素化明显</li>
+                                    <li>背景杂乱或有干扰元素</li>
+                                    <li>光线不足或色彩失真</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <p><strong>2. 多角度图片</strong></p>
+                        <ul>
+                            <li>
+                                <strong>✅ 优秀标准：</strong>
+                                <ul>
+                                    <li>提供 3-5 个不同角度的产品图</li>
+                                    <li>展示产品的正面、侧面、背面、细节</li>
+                                    <li>每个角度都清晰高质量</li>
+                                    <li>能够完整展示产品特征</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>⚠️ 良好标准：</strong>
+                                <ul>
+                                    <li>提供 2-3 个角度的图片</li>
+                                    <li>基本展示产品特征</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>❌ 基础/较差：</strong>
+                                <ul>
+                                    <li>只有 1-2 张图片</li>
+                                    <li>角度单一，无法全面了解产品</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <p><strong>3. 生活方式图片（Lifestyle Photos）</strong></p>
+                        <ul>
+                            <li>
+                                <strong>✅ 优秀标准：</strong>
+                                <ul>
+                                    <li>产品在真实使用场景中的照片</li>
+                                    <li>展示产品在房间、办公室等环境中的效果</li>
+                                    <li>帮助买家想象产品的实际使用效果</li>
+                                    <li>照片专业、有吸引力</li>
+                                    <li>至少 2-3 张生活方式图片</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>⚠️ 良好标准：</strong>
+                                <ul>
+                                    <li>有 1-2 张生活方式图片</li>
+                                    <li>但可能场景不够丰富</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>❌ 基础/较差：</strong>
+                                <ul>
+                                    <li>没有生活方式图片</li>
+                                    <li>只有产品本身，缺少使用场景</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <p><strong>4. 细节和特写图片</strong></p>
+                        <ul>
+                            <li>
+                                <strong>✅ 优秀标准：</strong>
+                                <ul>
+                                    <li>展示产品的关键细节</li>
+                                    <li>材质纹理清晰可见</li>
+                                    <li>印刷质量展示（对于 POD 产品）</li>
+                                    <li>帮助买家了解产品质量</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>❌ 基础/较差：</strong>
+                                <ul>
+                                    <li>没有细节图</li>
+                                    <li>无法看清产品细节</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <p><strong>5. 尺寸对比图</strong></p>
+                        <ul>
+                            <li>
+                                <strong>✅ 优秀标准：</strong>
+                                <ul>
+                                    <li>展示产品与常见物品的尺寸对比</li>
+                                    <li>帮助买家理解实际尺寸</li>
+                                    <li>例如：海报与手掌、A4 纸的对比</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>⚠️ 基础：</strong>
+                                <ul>
+                                    <li>在描述中提供尺寸信息，但没有视觉对比</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <p><strong>6. 图片总体质量</strong></p>
+                        <ul>
+                            <li>
+                                <strong>技术质量：</strong>
+                                <ul>
+                                    <li>分辨率足够高</li>
+                                    <li>清晰度好，无模糊</li>
+                                    <li>色彩准确，没有过度处理</li>
+                                    <li>光线充足，无阴影遮挡</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>内容质量：</strong>
+                                <ul>
+                                    <li>产品展示完整</li>
+                                    <li>角度多样化</li>
+                                    <li>有使用场景展示</li>
+                                    <li>专业、有吸引力</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <p><strong>📊 如何选择整体图片质量水平：</strong></p>
+                        <ul>
+                            <li>
+                                <strong>✅ 优秀：</strong>
+                                <br>• 满足以下所有条件：
+                                <br>• ✅ 主图高质量（2000+ 像素），清晰锐利
+                                <br>• ✅ 提供 8-10 张图片
+                                <br>• ✅ 包含多个角度（正面、侧面、细节）
+                                <br>• ✅ 有 2-3 张生活方式图片（真实使用场景）
+                                <br>• ✅ 有细节特写和尺寸对比图
+                                <br>• ✅ 所有图片都高质量、专业
+                            </li>
+                            <li>
+                                <strong>⚠️ 良好：</strong>
+                                <br>• 满足以下大部分条件：
+                                <br>• ✅ 主图质量不错（1500-2000 像素）
+                                <br>• ✅ 提供 5-7 张图片
+                                <br>• ✅ 有 2-3 个不同角度
+                                <br>• ✅ 有 1 张生活方式图片
+                                <br>• ⚠️ 仍有改进空间
+                            </li>
+                            <li>
+                                <strong>⚠️ 基础：</strong>
+                                <br>• 只有基本的图片：
+                                <br>• ⚠️ 主图质量一般（1000-1500 像素）
+                                <br>• ⚠️ 只有 3-5 张图片
+                                <br>• ⚠️ 角度单一，缺少多样性
+                                <br>• ⚠️ 没有生活方式图片
+                                <br>• 需要大幅改进
+                            </li>
+                            <li>
+                                <strong>❌ 较差：</strong>
+                                <br>• 图片质量明显不足：
+                                <br>• ❌ 主图分辨率低（小于 1000 像素）或模糊
+                                <br>• ❌ 只有 1-3 张图片
+                                <br>• ❌ 只有产品本身，没有其他角度或场景
+                                <br>• ❌ 图片质量差，色彩失真或模糊
+                                <br>• 需要立即改进
+                            </li>
+                        </ul>
+
+                        <p><strong>💡 图片优化技巧：</strong></p>
+                        <ul>
+                            <li><strong>使用 POD 平台的模拟器</strong>：Printify、Printful 等平台提供高质量的产品模拟图</li>
+                            <li><strong>投资专业摄影</strong>：如果可能，考虑使用真实产品照片</li>
+                            <li><strong>使用图片编辑工具</strong>：Canva、Photoshop 等工具优化图片</li>
+                            <li><strong>创建生活方式场景</strong>：使用房间模板或真实环境展示产品</li>
+                            <li><strong>展示多样性</strong>：不同尺寸、不同颜色、不同用途</li>
+                            <li><strong>定期更新</strong>：定期更换图片，使用季节性场景</li>
+                        </ul>
+
+                        <p><strong>⚠️ 常见错误避免：</strong></p>
+                        <ul>
+                            <li>❌ 使用低分辨率或模糊的图片</li>
+                            <li>❌ 图片数量太少（少于 5 张）</li>
+                            <li>❌ 背景杂乱或有干扰元素</li>
+                            <li>❌ 只有产品本身，没有使用场景</li>
+                            <li>❌ 过度滤镜处理导致不真实</li>
+                            <li>❌ 图片与产品实际外观不符</li>
+                        </ul>
+
+                        <button type="button" class="close-help-btn" onclick="toggleImagesQualityHelp()">关闭</button>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -1218,6 +1458,19 @@
         // 切换 SEO 帮助信息显示
         function toggleSEOHelp() {
             const helpBox = document.getElementById('seoHelp');
+            if (helpBox) {
+                if (helpBox.style.display === 'none' || helpBox.style.display === '') {
+                    helpBox.style.display = 'block';
+                    helpBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } else {
+                    helpBox.style.display = 'none';
+                }
+            }
+        }
+
+        // 切换图片质量帮助信息显示
+        function toggleImagesQualityHelp() {
+            const helpBox = document.getElementById('imagesQualityHelp');
             if (helpBox) {
                 if (helpBox.style.display === 'none' || helpBox.style.display === '') {
                     helpBox.style.display = 'block';
