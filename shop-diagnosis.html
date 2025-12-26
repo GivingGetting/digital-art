@@ -1173,13 +1173,292 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="customerService">客户服务</label>
+                    <label for="customerService">
+                        客户服务
+                        <button type="button" class="help-btn" onclick="toggleCustomerServiceHelp()" title="如何判断客户服务水平">
+                            ❓
+                        </button>
+                    </label>
                     <select id="customerService">
                         <option value="excellent">优秀 - 24小时内回复，好评率高</option>
                         <option value="good">良好 - 回复及时，评价良好</option>
                         <option value="basic">基础 - 偶尔回复不及时</option>
                         <option value="poor">较差 - 回复慢，投诉多</option>
                     </select>
+                    <div class="form-hint">
+                        不确定如何判断？点击 ❓ 查看详细评估指南
+                    </div>
+                    <div id="customerServiceHelp" class="help-box" style="display: none;">
+                        <h4>💬 如何判断客户服务水平？</h4>
+                        
+                        <p><strong>📋 客户服务的关键要素：</strong></p>
+                        <p>Etsy 的客户服务质量主要基于以下 5 个要素：</p>
+                        <ol>
+                            <li><strong>消息回复速度</strong> - 响应时间</li>
+                            <li><strong>客户评价和评分</strong> - 评价数量和星级</li>
+                            <li><strong>问题处理能力</strong> - 解决客户问题的效率</li>
+                            <li><strong>主动沟通</strong> - 订单更新和跟进</li>
+                            <li><strong>整体满意度</strong> - 客户投诉和退款率</li>
+                        </ol>
+
+                        <p><strong>🔍 检查步骤：</strong></p>
+                        <ol>
+                            <li>登录 Etsy 卖家账户</li>
+                            <li>进入 "Shop Manager" > "Messages" 查看消息回复情况</li>
+                            <li>进入 "Shop Manager" > "Reviews" 查看客户评价</li>
+                            <li>查看店铺页面的整体评分和评价数量</li>
+                            <li>检查是否有投诉或差评</li>
+                        </ol>
+
+                        <p><strong>✅ 详细评估标准：</strong></p>
+
+                        <p><strong>1. 消息回复速度（响应时间）</strong></p>
+                        <ul>
+                            <li>
+                                <strong>✅ 优秀标准：</strong>
+                                <ul>
+                                    <li>24 小时内回复所有客户消息</li>
+                                    <li>大部分消息在 12 小时内回复</li>
+                                    <li>紧急问题 1-2 小时内回复</li>
+                                    <li>设置了自动回复或消息模板</li>
+                                    <li>Etsy 显示"通常 1 小时内回复"或"通常 24 小时内回复"</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>⚠️ 良好标准：</strong>
+                                <ul>
+                                    <li>48 小时内回复大部分消息</li>
+                                    <li>偶尔有延迟但会回复</li>
+                                    <li>Etsy 显示"通常 1-2 天内回复"</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>⚠️ 基础标准：</strong>
+                                <ul>
+                                    <li>2-3 天内回复</li>
+                                    <li>偶尔回复不及时</li>
+                                    <li>部分消息可能延迟回复</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>❌ 较差标准：</strong>
+                                <ul>
+                                    <li>3 天以上才回复</li>
+                                    <li>经常不回复消息</li>
+                                    <li>客户需要多次询问才能得到回复</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <p><strong>2. 客户评价和评分</strong></p>
+                        <ul>
+                            <li>
+                                <strong>✅ 优秀标准：</strong>
+                                <ul>
+                                    <li>店铺评分 4.8 星或以上</li>
+                                    <li>90% 以上是 5 星评价</li>
+                                    <li>评价数量较多，且有持续新评价</li>
+                                    <li>评价中提到"快速回复"、"良好的服务"等</li>
+                                    <li>没有或很少 1-2 星差评</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>⚠️ 良好标准：</strong>
+                                <ul>
+                                    <li>店铺评分 4.5-4.7 星</li>
+                                    <li>70-90% 是 5 星评价</li>
+                                    <li>评价基本正面</li>
+                                    <li>偶尔有中评但无差评</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>⚠️ 基础标准：</strong>
+                                <ul>
+                                    <li>店铺评分 4.0-4.4 星</li>
+                                    <li>50-70% 是 5 星评价</li>
+                                    <li>有一些中评</li>
+                                    <li>偶尔有差评</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>❌ 较差标准：</strong>
+                                <ul>
+                                    <li>店铺评分低于 4.0 星</li>
+                                    <li>少于 50% 是 5 星评价</li>
+                                    <li>多个差评</li>
+                                    <li>评价中提到"回复慢"、"服务差"等</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <p><strong>3. 问题处理能力</strong></p>
+                        <ul>
+                            <li>
+                                <strong>✅ 优秀标准：</strong>
+                                <ul>
+                                    <li>快速识别和解决客户问题</li>
+                                    <li>主动提供解决方案（重新制作、退款等）</li>
+                                    <li>处理质量问题及时且专业</li>
+                                    <li>很少需要客户多次沟通才能解决</li>
+                                    <li>有清晰的问题处理流程</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>⚠️ 良好标准：</strong>
+                                <ul>
+                                    <li>能够解决大部分问题</li>
+                                    <li>可能需要一些时间但最终解决</li>
+                                    <li>偶尔需要多次沟通</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>⚠️ 基础标准：</strong>
+                                <ul>
+                                    <li>问题处理较慢</li>
+                                    <li>可能无法解决所有问题</li>
+                                    <li>需要客户多次催促</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>❌ 较差标准：</strong>
+                                <ul>
+                                    <li>很少主动解决问题</li>
+                                    <li>回避问题或推卸责任</li>
+                                    <li>导致客户投诉升级</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <p><strong>4. 主动沟通和跟进</strong></p>
+                        <ul>
+                            <li>
+                                <strong>✅ 优秀标准：</strong>
+                                <ul>
+                                    <li>主动发送订单确认消息</li>
+                                    <li>生产或发货时主动通知客户</li>
+                                    <li>配送异常时主动联系客户</li>
+                                    <li>售后主动跟进客户满意度</li>
+                                    <li>使用消息模板提高效率</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>⚠️ 良好标准：</strong>
+                                <ul>
+                                    <li>重要节点会通知客户</li>
+                                    <li>客户询问时及时回复</li>
+                                    <li>偶尔主动沟通</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>❌ 基础/较差标准：</strong>
+                                <ul>
+                                    <li>很少主动沟通</li>
+                                    <li>只在客户询问时才回复</li>
+                                    <li>缺少订单更新通知</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <p><strong>5. 投诉和退款率</strong></p>
+                        <ul>
+                            <li>
+                                <strong>✅ 优秀标准：</strong>
+                                <ul>
+                                    <li>投诉率很低（少于 1%）</li>
+                                    <li>退款率低（少于 2-3%）</li>
+                                    <li>没有或很少 Etsy 介入的纠纷</li>
+                                    <li>问题都在早期得到解决</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>⚠️ 良好标准：</strong>
+                                <ul>
+                                    <li>投诉率较低（1-3%）</li>
+                                    <li>退款率合理（3-5%）</li>
+                                    <li>偶尔有纠纷但能解决</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>⚠️ 基础标准：</strong>
+                                <ul>
+                                    <li>投诉率中等（3-5%）</li>
+                                    <li>退款率较高（5-8%）</li>
+                                    <li>有一些纠纷记录</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>❌ 较差标准：</strong>
+                                <ul>
+                                    <li>投诉率高（超过 5%）</li>
+                                    <li>退款率高（超过 8%）</li>
+                                    <li>经常有纠纷</li>
+                                    <li>Etsy 多次介入处理</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <p><strong>📊 如何选择整体客户服务水平：</strong></p>
+                        <ul>
+                            <li>
+                                <strong>✅ 优秀：</strong>
+                                <br>• 满足以下大部分条件：
+                                <br>• ✅ 24 小时内回复所有消息
+                                <br>• ✅ 店铺评分 4.8+ 星，90%+ 是 5 星评价
+                                <br>• ✅ 快速有效解决客户问题
+                                <br>• ✅ 主动沟通和跟进订单
+                                <br>• ✅ 投诉率和退款率都很低
+                            </li>
+                            <li>
+                                <strong>⚠️ 良好：</strong>
+                                <br>• 满足以下大部分条件：
+                                <br>• ✅ 48 小时内回复大部分消息
+                                <br>• ✅ 店铺评分 4.5-4.7 星，70-90% 是 5 星评价
+                                <br>• ✅ 能够解决大部分问题
+                                <br>• ⚠️ 主动沟通可以改进
+                                <br>• ⚠️ 投诉率和退款率在合理范围
+                            </li>
+                            <li>
+                                <strong>⚠️ 基础：</strong>
+                                <br>• 有以下特征：
+                                <br>• ⚠️ 2-3 天内回复，偶尔延迟
+                                <br>• ⚠️ 店铺评分 4.0-4.4 星，50-70% 是 5 星评价
+                                <br>• ⚠️ 问题处理较慢
+                                <br>• ⚠️ 缺少主动沟通
+                                <br>• ⚠️ 投诉率和退款率较高
+                            </li>
+                            <li>
+                                <strong>❌ 较差：</strong>
+                                <br>• 有以下问题：
+                                <br>• ❌ 3 天以上才回复或不回复
+                                <br>• ❌ 店铺评分低于 4.0 星，多个差评
+                                <br>• ❌ 问题处理不及时或不解决
+                                <br>• ❌ 几乎没有主动沟通
+                                <br>• ❌ 投诉率和退款率很高
+                            </li>
+                        </ul>
+
+                        <p><strong>💡 客户服务改进技巧：</strong></p>
+                        <ul>
+                            <li><strong>设置消息提醒</strong>：开启 Etsy 移动应用通知，及时回复消息</li>
+                            <li><strong>使用消息模板</strong>：创建常用回复模板提高效率</li>
+                            <li><strong>设置自动回复</strong>：告知客户预计回复时间</li>
+                            <li><strong>主动沟通</strong>：订单确认、发货通知、问题跟进</li>
+                            <li><strong>快速解决问题</strong>：质量问题立即处理，不要拖延</li>
+                            <li><strong>收集反馈</strong>：主动询问客户满意度，鼓励好评</li>
+                            <li><strong>学习改进</strong>：从差评和投诉中学习，避免重复问题</li>
+                        </ul>
+
+                        <p><strong>📊 查看客户服务数据的方法：</strong></p>
+                        <ol>
+                            <li><strong>Etsy Shop Manager > Messages</strong>：查看回复时间和消息历史</li>
+                            <li><strong>Etsy Shop Manager > Reviews</strong>：查看所有客户评价</li>
+                            <li><strong>店铺页面</strong>：查看整体评分和"回复速度"标识</li>
+                            <li><strong>Etsy Stats</strong>：查看评价趋势和客户反馈</li>
+                            <li><strong>Shop Manager > Orders</strong>：查看退款和取消订单情况</li>
+                        </ol>
+
+                        <button type="button" class="close-help-btn" onclick="toggleCustomerServiceHelp()">关闭</button>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -1471,6 +1750,19 @@
         // 切换图片质量帮助信息显示
         function toggleImagesQualityHelp() {
             const helpBox = document.getElementById('imagesQualityHelp');
+            if (helpBox) {
+                if (helpBox.style.display === 'none' || helpBox.style.display === '') {
+                    helpBox.style.display = 'block';
+                    helpBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } else {
+                    helpBox.style.display = 'none';
+                }
+            }
+        }
+
+        // 切换客户服务帮助信息显示
+        function toggleCustomerServiceHelp() {
+            const helpBox = document.getElementById('customerServiceHelp');
             if (helpBox) {
                 if (helpBox.style.display === 'none' || helpBox.style.display === '') {
                     helpBox.style.display = 'block';
