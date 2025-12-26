@@ -185,6 +185,86 @@
             margin-top: 0.5rem;
         }
 
+        .help-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+            transition: all 0.3s ease;
+        }
+
+        .help-btn:hover {
+            background: var(--secondary-color);
+            transform: scale(1.1);
+        }
+
+        .help-box {
+            background: linear-gradient(135deg, #f5f7fa, #e8ecf1);
+            border: 2px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .help-box h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .help-box p {
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+        }
+
+        .help-box ol,
+        .help-box ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .help-box li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .help-box a {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        .help-box a:hover {
+            color: var(--secondary-color);
+        }
+
+        .close-help-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .close-help-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
         .btn-diagnose {
             width: 100%;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
