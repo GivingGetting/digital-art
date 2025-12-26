@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Etsy 店铺诊断工具 - 全面分析店铺并获取优化建议">
+    <title>Etsy 店铺诊断工具 - GuNiaor 店铺分析</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+            --success-color: #48BB78;
+            --warning-color: #ED8936;
+            --error-color: #F56565;
+            --info-color: #4299E1;
+            --text-dark: #1A202C;
+            --text-light: #718096;
+            --accent-color: #F7FAFC;
+            --white: #FFFFFF;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            background: #F7FAFC;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.95;
+            margin-bottom: 2rem;
+        }
+
+        .shop-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .shop-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Diagnosis Form */
+        .diagnosis-form {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-dark);
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #E2E8F0;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-hint {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+
+        .btn-diagnose {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 1.25rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-diagnose:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* Results Section */
+        .results {
+            display: none;
+        }
+
+        .results.show {
+            display: block;
+        }
+
+        .score-card {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .score-value {
+            font-size: 5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .score-label {
+            font-size: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .category-section {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        .category-icon {
+            font-size: 2rem;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .category-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .check-item {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 12px;
+            background: var(--accent-color);
+        }
+
+        .check-icon {
+            font-size: 1.5rem;
+            min-width: 30px;
+        }
+
+        .check-icon.success {
+            color: var(--success-color);
+        }
+
+        .check-icon.warning {
+            color: var(--warning-color);
+        }
+
+        .check-icon.error {
+            color: var(--error-color);
+        }
+
+        .check-content h4 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .check-content p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .recommendation {
+            background: linear-gradient(135deg, #FFE5B4, #FFD89B);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 1rem;
+            border-left: 4px solid var(--warning-color);
+        }
+
+        .recommendation h4 {
+            color: var(--text-dark);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .recommendation ul {
+            margin-left: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .recommendation li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-action {
+            flex: 1;
+            min-width: 200px;
+            padding: 1rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+        }
+
+        .btn-secondary {
+            background: var(--accent-color);
+            color: var(--text-dark);
+            border: 2px solid #E2E8F0;
+        }
+
+        .btn-action:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 3rem 2rem 1.5rem;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .diagnosis-form {
+                padding: 2rem 1.5rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .btn-action {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Etsy 诊断工具</a>
+            <ul class="nav-links">
+                <li><a href="docs.html">文档中心</a></li>
+                <li><a href="guide.html">设置指南</a></li>
+                <li><a href="affiliate.html">联盟计划</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>🔍 Etsy 店铺诊断工具</h1>
+            <p>全面分析你的店铺设置，获取专业的优化建议和改进方案</p>
+            <a href="https://www.etsy.com/shop/GuNiaor" target="_blank" class="shop-link" rel="noopener noreferrer">
+                🔗 访问 GuNiaor 店铺
+                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
+                    <path d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Diagnosis Form -->
+    <div class="container">
+        <div class="diagnosis-form">
+            <h2 style="margin-bottom: 2rem; font-size: 2rem; text-align: center;">店铺信息填写</h2>
+            
+            <form id="diagnosisForm">
+                <div class="form-group">
+                    <label for="shopName">店铺名称</label>
+                    <input type="text" id="shopName" value="GuNiaor" placeholder="输入你的 Etsy 店铺名称">
+                    <div class="form-hint">例如：GuNiaor</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="shopType">店铺类型</label>
+                    <select id="shopType">
+                        <option value="pod">POD（按需打印）产品</option>
+                        <option value="digital">数字下载商品</option>
+                        <option value="mixed">混合（POD + 数字下载）</option>
+                        <option value="handmade">手工制作</option>
+                        <option value="vintage">古董/收藏品</option>
+                        <option value="supplies">手工用品</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="listingCount">商品数量</label>
+                    <input type="number" id="listingCount" min="0" placeholder="你的店铺有多少个 listing">
+                    <div class="form-hint">输入你店铺中的商品数量</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="hasPolicies">是否设置了店铺政策？</label>
+                    <select id="hasPolicies">
+                        <option value="yes">✅ 已完整设置</option>
+                        <option value="partial">⚠️ 部分设置</option>
+                        <option value="no">❌ 未设置</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="hasProductionPartner">是否添加了生产合作伙伴？</label>
+                    <select id="hasProductionPartner">
+                        <option value="yes">✅ 已添加（适用于 POD）</option>
+                        <option value="no">❌ 未添加</option>
+                        <option value="na">不适用（非 POD 产品）</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="seoStatus">SEO 优化情况</label>
+                    <select id="seoStatus">
+                        <option value="excellent">优秀 - 标题、标签、描述都优化完善</option>
+                        <option value="good">良好 - 大部分已优化</option>
+                        <option value="basic">基础 - 只有基本关键词</option>
+                        <option value="poor">较差 - 缺少优化</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="imagesQuality">产品图片质量</label>
+                    <select id="imagesQuality">
+                        <option value="excellent">优秀 - 高质量，多角度，生活场景</option>
+                        <option value="good">良好 - 质量不错，有多个角度</option>
+                        <option value="basic">基础 - 基本产品图</option>
+                        <option value="poor">较差 - 图片质量需要改进</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="customerService">客户服务</label>
+                    <select id="customerService">
+                        <option value="excellent">优秀 - 24小时内回复，好评率高</option>
+                        <option value="good">良好 - 回复及时，评价良好</option>
+                        <option value="basic">基础 - 偶尔回复不及时</option>
+                        <option value="poor">较差 - 回复慢，投诉多</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">店铺描述</label>
+                    <textarea id="description" placeholder="简单描述你的店铺情况、遇到的问题或想改进的方面..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-diagnose">🔍 开始诊断</button>
+            </form>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results" class="results">
+            <div class="score-card">
+                <div class="score-value" id="totalScore">--</div>
+                <div class="score-label">综合评分</div>
+            </div>
+
+            <!-- Shop Setup Category -->
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-icon">⚙️</div>
+                    <h2 class="category-title">店铺基础设置</h2>
+                </div>
+                <div id="setupChecks"></div>
+            </div>
+
+            <!-- Policies Category -->
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-icon">📋</div>
+                    <h2 class="category-title">店铺政策设置</h2>
+                </div>
+                <div id="policyChecks"></div>
+            </div>
+
+            <!-- SEO Category -->
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-icon">📊</div>
+                    <h2 class="category-title">SEO 和优化</h2>
+                </div>
+                <div id="seoChecks"></div>
+            </div>
+
+            <!-- Products Category -->
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-icon">📦</div>
+                    <h2 class="category-title">产品和 Listing</h2>
+                </div>
+                <div id="productChecks"></div>
+            </div>
+
+            <!-- Recommendations -->
+            <div class="category-section">
+                <div class="category-header">
+                    <div class="category-icon">💡</div>
+                    <h2 class="category-title">改进建议</h2>
+                </div>
+                <div id="recommendations"></div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <a href="docs.html" class="btn-action btn-primary">📚 查看详细指南</a>
+                <a href="Etsy政策设置指南.md" class="btn-action btn-secondary">📋 政策设置指南</a>
+                <a href="https://www.etsy.com/shop/GuNiaor" target="_blank" class="btn-action btn-secondary" rel="noopener noreferrer">🔗 访问店铺</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">产品页面</a>
+            <a href="docs.html">文档中心</a>
+            <a href="guide.html">设置指南</a>
+            <a href="affiliate.html">联盟计划</a>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Etsy 店铺诊断工具. 所有权利保留.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('diagnosisForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            performDiagnosis();
+        });
+
+        function performDiagnosis() {
+            // 获取表单数据
+            const shopName = document.getElementById('shopName').value || 'GuNiaor';
+            const shopType = document.getElementById('shopType').value;
+            const listingCount = parseInt(document.getElementById('listingCount').value) || 0;
+            const hasPolicies = document.getElementById('hasPolicies').value;
+            const hasProductionPartner = document.getElementById('hasProductionPartner').value;
+            const seoStatus = document.getElementById('seoStatus').value;
+            const imagesQuality = document.getElementById('imagesQuality').value;
+            const customerService = document.getElementById('customerService').value;
+
+            // 计算分数
+            let totalScore = 0;
+            let maxScore = 100;
+
+            // 店铺设置 (20分)
+            let setupScore = 0;
+            if (hasPolicies === 'yes') setupScore += 15;
+            else if (hasPolicies === 'partial') setupScore += 8;
+            
+            if (shopType === 'pod' || shopType === 'mixed') {
+                if (hasProductionPartner === 'yes') setupScore += 5;
+            } else {
+                setupScore += 5; // 非 POD 产品不要求
+            }
+
+            // 政策设置 (25分)
+            let policyScore = 0;
+            if (hasPolicies === 'yes') policyScore = 25;
+            else if (hasPolicies === 'partial') policyScore = 12;
+            else policyScore = 0;
+
+            // SEO 优化 (25分)
+            let seoScore = 0;
+            if (seoStatus === 'excellent') seoScore = 25;
+            else if (seoStatus === 'good') seoScore = 18;
+            else if (seoStatus === 'basic') seoScore = 10;
+            else seoScore = 5;
+
+            // 产品 (20分)
+            let productScore = 0;
+            if (imagesQuality === 'excellent') productScore += 15;
+            else if (imagesQuality === 'good') productScore += 10;
+            else if (imagesQuality === 'basic') productScore += 6;
+            else productScore += 3;
+
+            if (listingCount > 20) productScore += 5;
+            else if (listingCount > 10) productScore += 3;
+            else if (listingCount > 0) productScore += 1;
+
+            // 客户服务 (10分)
+            let serviceScore = 0;
+            if (customerService === 'excellent') serviceScore = 10;
+            else if (customerService === 'good') serviceScore = 7;
+            else if (customerService === 'basic') serviceScore = 4;
+            else serviceScore = 2;
+
+            totalScore = setupScore + policyScore + seoScore + productScore + serviceScore;
+
+            // 显示结果
+            document.getElementById('totalScore').textContent = totalScore;
+            
+            // 显示各个类别的检查结果
+            displaySetupChecks(shopType, hasPolicies, hasProductionPartner, setupScore);
+            displayPolicyChecks(hasPolicies, policyScore);
+            displaySEOChecks(seoStatus, seoScore);
+            displayProductChecks(listingCount, imagesQuality, productScore);
+            displayRecommendations(shopType, hasPolicies, hasProductionPartner, seoStatus, imagesQuality, listingCount, customerService);
+
+            // 显示结果区域
+            document.getElementById('results').classList.add('show');
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function displaySetupChecks(shopType, hasPolicies, hasProductionPartner, score) {
+            const container = document.getElementById('setupChecks');
+            container.innerHTML = '';
+
+            const checks = [
+                {
+                    icon: hasPolicies === 'yes' ? '✅' : (hasPolicies === 'partial' ? '⚠️' : '❌'),
+                    iconClass: hasPolicies === 'yes' ? 'success' : (hasPolicies === 'partial' ? 'warning' : 'error'),
+                    title: '店铺政策设置',
+                    desc: hasPolicies === 'yes' ? '已完整设置店铺政策' : (hasPolicies === 'partial' ? '部分政策已设置，建议完善' : '未设置店铺政策，需要立即设置')
+                },
+                {
+                    icon: (shopType === 'pod' || shopType === 'mixed') ? (hasProductionPartner === 'yes' ? '✅' : '❌') : '✅',
+                    iconClass: (shopType === 'pod' || shopType === 'mixed') ? (hasProductionPartner === 'yes' ? 'success' : 'error') : 'success',
+                    title: '生产合作伙伴设置',
+                    desc: (shopType === 'pod' || shopType === 'mixed') ? (hasProductionPartner === 'yes' ? '已添加生产合作伙伴' : 'POD 产品必须添加生产合作伙伴') : '不适用于你的店铺类型'
+                },
+                {
+                    icon: shopType ? '✅' : '❌',
+                    iconClass: 'success',
+                    title: '店铺类型',
+                    desc: `店铺类型：${getShopTypeName(shopType)}`
+                }
+            ];
+
+            checks.forEach(check => {
+                const item = createCheckItem(check);
+                container.appendChild(item);
+            });
+        }
+
+        function displayPolicyChecks(hasPolicies, score) {
+            const container = document.getElementById('policyChecks');
+            container.innerHTML = '';
+
+            const checks = [
+                {
+                    icon: hasPolicies === 'yes' ? '✅' : '❌',
+                    iconClass: hasPolicies === 'yes' ? 'success' : 'error',
+                    title: '退货和换货政策',
+                    desc: hasPolicies === 'yes' ? '已设置退货政策' : '需要设置退货和换货政策'
+                },
+                {
+                    icon: hasPolicies === 'yes' ? '✅' : '❌',
+                    iconClass: hasPolicies === 'yes' ? 'success' : 'error',
+                    title: '隐私政策',
+                    desc: hasPolicies === 'yes' ? '已设置隐私政策' : '需要设置隐私政策'
+                },
+                {
+                    icon: hasPolicies === 'yes' ? '✅' : '❌',
+                    iconClass: hasPolicies === 'yes' ? 'success' : 'error',
+                    title: '运输政策',
+                    desc: hasPolicies === 'yes' ? '已设置运输政策' : '需要设置运输政策'
+                }
+            ];
+
+            checks.forEach(check => {
+                const item = createCheckItem(check);
+                container.appendChild(item);
+            });
+        }
+
+        function displaySEOChecks(seoStatus, score) {
+            const container = document.getElementById('seoChecks');
+            container.innerHTML = '';
+
+            const statusMap = {
+                'excellent': { icon: '✅', class: 'success', desc: 'SEO 优化完善，标题、标签、描述都优化良好' },
+                'good': { icon: '⚠️', class: 'warning', desc: 'SEO 优化良好，但仍有改进空间' },
+                'basic': { icon: '⚠️', class: 'warning', desc: '只有基础 SEO 优化，建议进一步优化' },
+                'poor': { icon: '❌', class: 'error', desc: 'SEO 优化较差，需要重点改进' }
+            };
+
+            const status = statusMap[seoStatus] || statusMap['poor'];
+
+            const checks = [
+                {
+                    icon: status.icon,
+                    iconClass: status.class,
+                    title: 'SEO 整体评分',
+                    desc: status.desc
+                },
+                {
+                    icon: seoStatus !== 'poor' ? '✅' : '❌',
+                    iconClass: seoStatus !== 'poor' ? 'success' : 'error',
+                    title: '关键词优化',
+                    desc: seoStatus !== 'poor' ? '标题和描述中包含相关关键词' : '需要添加更多相关关键词'
+                },
+                {
+                    icon: seoStatus === 'excellent' || seoStatus === 'good' ? '✅' : '⚠️',
+                    iconClass: seoStatus === 'excellent' || seoStatus === 'good' ? 'success' : 'warning',
+                    title: '标签使用',
+                    desc: seoStatus === 'excellent' || seoStatus === 'good' ? '充分利用了所有 13 个标签位置' : '建议使用所有 13 个标签位置'
+                }
+            ];
+
+            checks.forEach(check => {
+                const item = createCheckItem(check);
+                container.appendChild(item);
+            });
+        }
+
+        function displayProductChecks(listingCount, imagesQuality, score) {
+            const container = document.getElementById('productChecks');
+            container.innerHTML = '';
+
+            const checks = [
+                {
+                    icon: listingCount > 0 ? '✅' : '❌',
+                    iconClass: listingCount > 0 ? 'success' : 'error',
+                    title: '商品数量',
+                    desc: listingCount > 0 ? `当前有 ${listingCount} 个商品 listing` : '店铺中没有商品，需要上架商品'
+                },
+                {
+                    icon: imagesQuality === 'excellent' || imagesQuality === 'good' ? '✅' : '⚠️',
+                    iconClass: imagesQuality === 'excellent' || imagesQuality === 'good' ? 'success' : 'warning',
+                    title: '产品图片质量',
+                    desc: getImageQualityDesc(imagesQuality)
+                },
+                {
+                    icon: listingCount >= 10 ? '✅' : (listingCount > 0 ? '⚠️' : '❌'),
+                    iconClass: listingCount >= 10 ? 'success' : (listingCount > 0 ? 'warning' : 'error'),
+                    title: '商品丰富度',
+                    desc: listingCount >= 10 ? '商品数量充足' : (listingCount > 0 ? '建议增加更多商品以提升曝光' : '需要上架更多商品')
+                }
+            ];
+
+            checks.forEach(check => {
+                const item = createCheckItem(check);
+                container.appendChild(item);
+            });
+        }
+
+        function displayRecommendations(shopType, hasPolicies, hasProductionPartner, seoStatus, imagesQuality, listingCount, customerService) {
+            const container = document.getElementById('recommendations');
+            container.innerHTML = '';
+
+            const recommendations = [];
+
+            // 政策相关建议
+            if (hasPolicies !== 'yes') {
+                recommendations.push({
+                    title: '立即设置完整的店铺政策',
+                    items: [
+                        '设置退货和换货政策（特别是 POD 产品）',
+                        '添加隐私政策（说明如何收集和使用客户数据）',
+                        '完善运输政策（生产时间、配送时间、费用等）',
+                        '查看我们的 <a href="Etsy政策设置指南.md">Etsy 政策设置指南</a> 获取详细步骤'
+                    ]
+                });
+            }
+
+            // POD 相关建议
+            if ((shopType === 'pod' || shopType === 'mixed') && hasProductionPartner !== 'yes') {
+                recommendations.push({
+                    title: '添加生产合作伙伴',
+                    items: [
+                        'POD 产品必须在 Etsy 中声明生产合作伙伴',
+                        '添加 Printify、Printful 或其他 POD 供应商',
+                        '查看我们的 <a href="Etsy生产合作伙伴设置指南.md">生产合作伙伴设置指南</a>',
+                        '确保每个 POD listing 都选择了正确的合作伙伴'
+                    ]
+                });
+            }
+
+            // SEO 建议
+            if (seoStatus !== 'excellent') {
+                recommendations.push({
+                    title: '优化 SEO',
+                    items: [
+                        '在标题中包含主要关键词（如 "Digital Art Print", "Wall Art"）',
+                        '使用所有 13 个标签位置',
+                        '在描述中自然地包含关键词',
+                        '选择正确的产品分类',
+                        '定期更新和优化 listing 标题'
+                    ]
+                });
+            }
+
+            // 图片建议
+            if (imagesQuality !== 'excellent') {
+                recommendations.push({
+                    title: '提升产品图片质量',
+                    items: [
+                        '使用高质量的产品图片（至少 2000x2000 像素）',
+                        '展示产品在不同场景中的使用效果',
+                        '包含产品细节图',
+                        '使用生活方式图片',
+                        '考虑使用视频展示产品'
+                    ]
+                });
+            }
+
+            // 商品数量建议
+            if (listingCount < 10) {
+                recommendations.push({
+                    title: '增加商品数量',
+                    items: [
+                        '建议至少有 10-20 个活跃 listing',
+                        '更多商品可以增加店铺在搜索结果中的曝光',
+                        '定期上架新商品保持店铺活跃度',
+                        '可以考虑批量创建相似产品的 listing'
+                    ]
+                });
+            }
+
+            // 客户服务建议
+            if (customerService !== 'excellent') {
+                recommendations.push({
+                    title: '改善客户服务',
+                    items: [
+                        '目标：24 小时内回复所有客户消息',
+                        '提供清晰、友好的回复',
+                        '主动解决问题，避免差评',
+                        '使用店铺消息模板提高回复效率',
+                        '查看我们的 <a href="店铺消息模板.md">店铺消息模板</a>'
+                    ]
+                });
+            }
+
+            // 通用建议
+            recommendations.push({
+                title: '持续优化建议',
+                items: [
+                    '定期检查店铺数据和表现',
+                    '收集客户反馈并改进',
+                    '关注 Etsy SEO 最佳实践',
+                    '保持店铺政策信息更新',
+                    '考虑参与 Etsy 的促销活动',
+                    '建立品牌形象和店铺风格一致性'
+                ]
+            });
+
+            recommendations.forEach(rec => {
+                const recDiv = document.createElement('div');
+                recDiv.className = 'recommendation';
+                recDiv.innerHTML = `
+                    <h4>${rec.title}</h4>
+                    <ul>
+                        ${rec.items.map(item => `<li>${item}</li>`).join('')}
+                    </ul>
+                `;
+                container.appendChild(recDiv);
+            });
+        }
+
+        function createCheckItem(check) {
+            const item = document.createElement('div');
+            item.className = 'check-item';
+            item.innerHTML = `
+                <div class="check-icon ${check.iconClass}">${check.icon}</div>
+                <div class="check-content">
+                    <h4>${check.title}</h4>
+                    <p>${check.desc}</p>
+                </div>
+            `;
+            return item;
+        }
+
+        function getShopTypeName(type) {
+            const names = {
+                'pod': 'POD（按需打印）产品',
+                'digital': '数字下载商品',
+                'mixed': '混合（POD + 数字下载）',
+                'handmade': '手工制作',
+                'vintage': '古董/收藏品',
+                'supplies': '手工用品'
+            };
+            return names[type] || '未知';
+        }
+
+        function getImageQualityDesc(quality) {
+            const descs = {
+                'excellent': '图片质量优秀，多角度展示，包含生活场景',
+                'good': '图片质量良好，有多个角度',
+                'basic': '基础产品图，建议增加更多角度和场景',
+                'poor': '图片质量需要改进，建议重新拍摄或使用更好的图片'
+            };
+            return descs[quality] || '未知';
+        }
+    </script>
+</body>
+</html>
