@@ -29,3 +29,31 @@ ENV/
 
 # Override global gitignore - allow index.html for GitHub Pages
 !index.html
+
+# Internal operation files - contain sensitive information
+使用dliu53推送指南.md
+修复完成-推送命令.md
+修复提交作者.md
+完全删除Klivoy指南.md
+Klivoy检查报告.md
+检查结果报告.md
+检查推送状态.md
+手动输入凭证方法.md
+清除凭证并强制输入新凭证.md
+解决Keychain凭证问题.md
+上传政策指南说明.md
+快速推送指南.md
+推送三个页面.md
+文档索引说明.md
+删除keychain凭证.sh
+clear-keychain.sh
+force-credential-prompt.sh
+force-new-credentials.sh
+push-to-github.sh
+重新创建仓库.sh
+重新创建仓库指南.md
+部署到-digital-art.md
+部署选项.md
+GITHUB_PAGES_SETUP.md
+部署指南.md
+访问网站指南.md
