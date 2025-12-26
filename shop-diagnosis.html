@@ -442,13 +442,6 @@
         <div class="hero-content">
             <h1>🔍 Etsy 店铺诊断工具</h1>
             <p>全面分析你的店铺设置，获取专业的优化建议和改进方案</p>
-            <a href="https://www.etsy.com/shop/GuNiaor" target="_blank" class="shop-link" rel="noopener noreferrer">
-                🔗 访问 GuNiaor 店铺
-                <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z"/>
-                    <path d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z"/>
-                </svg>
-            </a>
         </div>
     </section>
 
@@ -459,9 +452,11 @@
             
             <form id="diagnosisForm">
                 <div class="form-group">
-                    <label for="shopName">店铺名称</label>
-                    <input type="text" id="shopName" value="GuNiaor" placeholder="输入你的 Etsy 店铺名称">
-                    <div class="form-hint">例如：GuNiaor</div>
+                    <label for="shopLink">店铺链接或店铺名称</label>
+                    <input type="text" id="shopLink" placeholder="输入 Etsy 店铺链接或店铺名称">
+                    <div class="form-hint">
+                        可以输入完整的店铺链接（如：https://www.etsy.com/shop/GuNiaor）或只输入店铺名称（如：GuNiaor）
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -592,10 +587,10 @@
             </div>
 
             <!-- Action Buttons -->
-            <div class="action-buttons">
+            <div class="action-buttons" id="actionButtons">
                 <a href="docs.html" class="btn-action btn-primary">📚 查看详细指南</a>
                 <a href="Etsy政策设置指南.md" class="btn-action btn-secondary">📋 政策设置指南</a>
-                <a href="https://www.etsy.com/shop/GuNiaor" target="_blank" class="btn-action btn-secondary" rel="noopener noreferrer">🔗 访问店铺</a>
+                <a href="#" id="shopLinkButton" target="_blank" class="btn-action btn-secondary" rel="noopener noreferrer" style="display: none;">🔗 访问店铺</a>
             </div>
         </div>
     </div>
@@ -687,6 +682,14 @@
             displaySEOChecks(seoStatus, seoScore);
             displayProductChecks(listingCount, imagesQuality, productScore);
             displayRecommendations(shopType, hasPolicies, hasProductionPartner, seoStatus, imagesQuality, listingCount, customerService);
+
+            // 更新店铺链接按钮
+            if (shopUrl) {
+                const shopLinkButton = document.getElementById('shopLinkButton');
+                shopLinkButton.href = shopUrl;
+                shopLinkButton.textContent = `🔗 访问 ${shopName} 店铺`;
+                shopLinkButton.style.display = 'inline-block';
+            }
 
             // 显示结果区域
             document.getElementById('results').classList.add('show');
