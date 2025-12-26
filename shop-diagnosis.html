@@ -472,9 +472,12 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="listingCount">商品数量</label>
-                    <input type="number" id="listingCount" min="0" placeholder="你的店铺有多少个 listing">
-                    <div class="form-hint">输入你店铺中的商品数量</div>
+                    <label for="listingCount">商品数量 <span style="color: #999; font-weight: normal;">(可选)</span></label>
+                    <input type="number" id="listingCount" min="0" placeholder="你的店铺有多少个 listing（可选，留空按 0 处理）">
+                    <div class="form-hint">
+                        输入你店铺中的商品数量。如果不填写，将按 0 个商品计算（可能影响产品分数）。<br>
+                        <small style="color: #999;">注意：由于技术限制，无法自动从店铺链接中获取商品数量，需要手动输入。</small>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -644,7 +647,8 @@
                 }
                 
                 const shopType = document.getElementById('shopType').value;
-                const listingCount = parseInt(document.getElementById('listingCount').value) || 0;
+                const listingCountInput = document.getElementById('listingCount').value.trim();
+                const listingCount = listingCountInput === '' ? 0 : (parseInt(listingCountInput) || 0);
                 const hasPolicies = document.getElementById('hasPolicies').value;
                 const hasProductionPartner = document.getElementById('hasProductionPartner').value;
                 const seoStatus = document.getElementById('seoStatus').value;
@@ -691,6 +695,7 @@
                 if (listingCount > 20) productScore += 5;
                 else if (listingCount > 10) productScore += 3;
                 else if (listingCount > 0) productScore += 1;
+                // 如果 listingCount 为 0，说明用户未填写，不扣分但也不加分
 
                 // 客户服务 (10分)
                 let serviceScore = 0;
@@ -875,13 +880,18 @@
         function displayProductChecks(listingCount, imagesQuality, score) {
             const container = document.getElementById('productChecks');
             container.innerHTML = '';
+            
+            // 检查是否为未填写的情况（通过检查输入框是否为空）
+            const listingCountInput = document.getElementById('listingCount').value.trim();
+            const isListingCountProvided = listingCountInput !== '';
 
             const checks = [
                 {
-                    icon: listingCount > 0 ? '✅' : '❌',
-                    iconClass: listingCount > 0 ? 'success' : 'error',
+                    icon: listingCount > 0 ? '✅' : (isListingCountProvided ? '❌' : '⚠️'),
+                    iconClass: listingCount > 0 ? 'success' : (isListingCountProvided ? 'error' : 'warning'),
                     title: '商品数量',
-                    desc: listingCount > 0 ? `当前有 ${listingCount} 个商品 listing` : '店铺中没有商品，需要上架商品'
+                    desc: listingCount > 0 ? `当前有 ${listingCount} 个商品 listing` : 
+                          (isListingCountProvided ? '店铺中没有商品，需要上架商品' : '未填写商品数量，请手动输入以获取更准确的诊断')
                 },
                 {
                     icon: imagesQuality === 'excellent' || imagesQuality === 'good' ? '✅' : '⚠️',
@@ -890,10 +900,12 @@
                     desc: getImageQualityDesc(imagesQuality)
                 },
                 {
-                    icon: listingCount >= 10 ? '✅' : (listingCount > 0 ? '⚠️' : '❌'),
-                    iconClass: listingCount >= 10 ? 'success' : (listingCount > 0 ? 'warning' : 'error'),
+                    icon: listingCount >= 10 ? '✅' : (listingCount > 0 ? '⚠️' : (isListingCountProvided ? '❌' : '⚠️')),
+                    iconClass: listingCount >= 10 ? 'success' : (listingCount > 0 ? 'warning' : (isListingCountProvided ? 'error' : 'warning')),
                     title: '商品丰富度',
-                    desc: listingCount >= 10 ? '商品数量充足' : (listingCount > 0 ? '建议增加更多商品以提升曝光' : '需要上架更多商品')
+                    desc: listingCount >= 10 ? '商品数量充足' : 
+                          (listingCount > 0 ? '建议增加更多商品以提升曝光' : 
+                          (isListingCountProvided ? '需要上架更多商品' : '未提供商品数量信息，无法评估商品丰富度'))
                 }
             ];
 
@@ -931,6 +943,40 @@
                         '添加 Printify、Printful 或其他 POD 供应商',
                         '查看我们的 <a href="Etsy生产合作伙伴设置指南.md">生产合作伙伴设置指南</a>',
                         '确保每个 POD listing 都选择了正确的合作伙伴'
+                    ]
+                });
+            }
+
+            // 商品数量建议
+            const listingCountInput = document.getElementById('listingCount').value.trim();
+            const isListingCountProvided = listingCountInput !== '';
+            const listingCountValue = isListingCountProvided ? (parseInt(listingCountInput) || 0) : 0;
+            
+            if (!isListingCountProvided) {
+                recommendations.push({
+                    title: '补充商品数量信息',
+                    items: [
+                        '在表单中填写你的店铺商品数量，以获得更准确的诊断结果',
+                        '商品数量会影响产品分数和优化建议',
+                        '如果不确定，可以访问你的 Etsy 店铺页面查看商品总数'
+                    ]
+                });
+            } else if (listingCountValue === 0) {
+                recommendations.push({
+                    title: '上架商品',
+                    items: [
+                        '你的店铺还没有商品，需要创建第一个 listing',
+                        '建议至少上架 10-20 个商品以提升店铺曝光度',
+                        '查看我们的设置指南了解如何创建优质 listing'
+                    ]
+                });
+            } else if (listingCountValue < 10) {
+                recommendations.push({
+                    title: '增加商品数量',
+                    items: [
+                        `当前只有 ${listingCountValue} 个商品，建议增加到至少 10 个`,
+                        '更多商品可以增加店铺曝光和销售机会',
+                        'Etsy 算法倾向于展示商品数量较多的店铺'
                     ]
                 });
             }
