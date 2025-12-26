@@ -719,13 +719,207 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="seoStatus">SEO 优化情况</label>
+                    <label for="seoStatus">
+                        SEO 优化情况
+                        <button type="button" class="help-btn" onclick="toggleSEOHelp()" title="如何判断 SEO 优化情况">
+                            ❓
+                        </button>
+                    </label>
                     <select id="seoStatus">
                         <option value="excellent">优秀 - 标题、标签、描述都优化完善</option>
                         <option value="good">良好 - 大部分已优化</option>
                         <option value="basic">基础 - 只有基本关键词</option>
                         <option value="poor">较差 - 缺少优化</option>
                     </select>
+                    <div class="form-hint">
+                        不确定如何判断？点击 ❓ 查看详细评估指南
+                    </div>
+                    <div id="seoHelp" class="help-box" style="display: none;">
+                        <h4>🔍 如何判断 SEO 优化情况？</h4>
+                        
+                        <p><strong>📋 Etsy SEO 的关键要素：</strong></p>
+                        <p>Etsy 的 SEO 主要基于以下 4 个要素：</p>
+                        <ol>
+                            <li><strong>产品标题（Title）</strong> - 最重要的 SEO 要素</li>
+                            <li><strong>标签（Tags）</strong> - 最多 13 个标签</li>
+                            <li><strong>产品描述（Description）</strong> - 详细且包含关键词</li>
+                            <li><strong>产品分类（Category）</strong> - 选择正确的分类</li>
+                        </ol>
+
+                        <p><strong>🔍 检查步骤：</strong></p>
+                        <ol>
+                            <li>登录 Etsy 卖家账户</li>
+                            <li>进入 "Shop Manager" > "Listings"</li>
+                            <li>打开几个代表性产品的编辑页面</li>
+                            <li>按照下面的清单逐一检查</li>
+                        </ol>
+
+                        <p><strong>✅ 检查清单：</strong></p>
+
+                        <p><strong>1. 产品标题（Title）- 最重要！</strong></p>
+                        <ul>
+                            <li>
+                                <strong>✅ 优秀标准：</strong>
+                                <ul>
+                                    <li>包含主要关键词（如 "Digital Art Print", "Wall Art", "POD"）</li>
+                                    <li>标题长度在 55 个字符以内（便于搜索显示）</li>
+                                    <li>包含产品类型、尺寸、风格等关键信息</li>
+                                    <li>使用买家常用的搜索词</li>
+                                    <li>示例：<code>Abstract Art Print - 16x20 Poster - Print on Demand - Modern Home Decor</code></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>⚠️ 良好标准：</strong>
+                                <ul>
+                                    <li>包含关键词，但可能不够完整</li>
+                                    <li>标题过长或过短</li>
+                                    <li>示例：<code>Digital Art Print - Abstract</code></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>❌ 基础/较差：</strong>
+                                <ul>
+                                    <li>只有产品名称，缺少关键词</li>
+                                    <li>没有描述产品特点</li>
+                                    <li>示例：<code>Art Print</code> 或 <code>Poster</code></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <p><strong>2. 标签（Tags）- 最多 13 个</strong></p>
+                        <ul>
+                            <li>
+                                <strong>✅ 优秀标准：</strong>
+                                <ul>
+                                    <li>使用了所有 13 个标签位置</li>
+                                    <li>包含多样化的关键词（产品类型、风格、用途、尺寸等）</li>
+                                    <li>使用长尾关键词和具体描述词</li>
+                                    <li>标签与产品高度相关</li>
+                                    <li>示例：<code>digital art, wall art, poster, print on demand, abstract art, modern decor, home decor, office decor, 16x20, art print, unique gift, minimalist, contemporary</code></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>⚠️ 良好标准：</strong>
+                                <ul>
+                                    <li>使用了 8-12 个标签</li>
+                                    <li>包含主要关键词</li>
+                                    <li>示例：<code>art print, poster, wall art, home decor</code></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>❌ 基础/较差：</strong>
+                                <ul>
+                                    <li>只使用了 5 个或更少的标签</li>
+                                    <li>标签过于通用或不相关</li>
+                                    <li>示例：<code>art, print, poster</code></li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <p><strong>3. 产品描述（Description）</strong></p>
+                        <ul>
+                            <li>
+                                <strong>✅ 优秀标准：</strong>
+                                <ul>
+                                    <li>描述详细，至少 200-300 字</li>
+                                    <li>自然地包含多个关键词</li>
+                                    <li>包含产品规格（尺寸、材质、颜色）</li>
+                                    <li>描述使用场景和优势</li>
+                                    <li>结构清晰，易于阅读</li>
+                                    <li>包含配送和处理时间信息</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>⚠️ 良好标准：</strong>
+                                <ul>
+                                    <li>描述基本完整，100-200 字</li>
+                                    <li>包含一些关键词</li>
+                                    <li>信息不够详细</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>❌ 基础/较差：</strong>
+                                <ul>
+                                    <li>描述很短（少于 50 字）</li>
+                                    <li>几乎没有关键词</li>
+                                    <li>缺少产品详细信息</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <p><strong>4. 产品分类（Category）</strong></p>
+                        <ul>
+                            <li>
+                                <strong>✅ 优秀标准：</strong>
+                                <ul>
+                                    <li>选择了最准确的分类</li>
+                                    <li>可能包含子分类</li>
+                                    <li>与产品类型高度匹配</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>⚠️ 基础/较差：</strong>
+                                <ul>
+                                    <li>分类不准确</li>
+                                    <li>选择了错误的分类</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <p><strong>📊 如何选择整体 SEO 水平：</strong></p>
+                        <ul>
+                            <li>
+                                <strong>✅ 优秀：</strong>
+                                <br>• 所有产品都满足以下条件：
+                                <br>• ✅ 标题包含关键词，长度合适
+                                <br>• ✅ 使用 12-13 个相关标签
+                                <br>• ✅ 描述详细且包含关键词
+                                <br>• ✅ 分类准确
+                                <br>• 定期优化和更新
+                            </li>
+                            <li>
+                                <strong>⚠️ 良好：</strong>
+                                <br>• 大部分产品满足以下条件：
+                                <br>• ✅ 标题包含主要关键词
+                                <br>• ✅ 使用 8-12 个标签
+                                <br>• ✅ 描述基本完整
+                                <br>• ⚠️ 仍有改进空间
+                            </li>
+                            <li>
+                                <strong>⚠️ 基础：</strong>
+                                <br>• 只有基本的 SEO 优化：
+                                <br>• ⚠️ 标题有少量关键词
+                                <br>• ⚠️ 使用 5-8 个标签
+                                <br>• ⚠️ 描述简短，关键词不多
+                                <br>• 需要大幅改进
+                            </li>
+                            <li>
+                                <strong>❌ 较差：</strong>
+                                <br>• SEO 优化不足：
+                                <br>• ❌ 标题缺少关键词
+                                <br>• ❌ 标签很少（少于 5 个）
+                                <br>• ❌ 描述很短或空白
+                                <br>• 需要立即优化
+                            </li>
+                        </ul>
+
+                        <p><strong>💡 SEO 优化技巧：</strong></p>
+                        <ul>
+                            <li>研究竞争对手的标题和标签</li>
+                            <li>使用 Etsy 的搜索建议功能找到热门关键词</li>
+                            <li>在前 140 个字符的描述中包含最重要的关键词</li>
+                            <li>定期更新标题和标签，使用季节性关键词</li>
+                            <li>分析 Etsy Stats 查看哪些关键词带来流量</li>
+                        </ul>
+
+                        <p><strong>🔗 相关文档：</strong></p>
+                        <ul>
+                            <li>📘 <a href="店铺信息优化建议.md" target="_blank">店铺信息优化建议.md</a> - 详细的 SEO 优化指南</li>
+                            <li>📋 <a href="快速开始.md" target="_blank">快速开始.md</a> - 包含 SEO 优化技巧</li>
+                        </ul>
+
+                        <button type="button" class="close-help-btn" onclick="toggleSEOHelp()">关闭</button>
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -1011,6 +1205,19 @@
         // 切换生产合作伙伴帮助信息显示
         function toggleProductionPartnerHelp() {
             const helpBox = document.getElementById('productionPartnerHelp');
+            if (helpBox) {
+                if (helpBox.style.display === 'none' || helpBox.style.display === '') {
+                    helpBox.style.display = 'block';
+                    helpBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } else {
+                    helpBox.style.display = 'none';
+                }
+            }
+        }
+
+        // 切换 SEO 帮助信息显示
+        function toggleSEOHelp() {
+            const helpBox = document.getElementById('seoHelp');
             if (helpBox) {
                 if (helpBox.style.display === 'none' || helpBox.style.display === '') {
                     helpBox.style.display = 'block';
